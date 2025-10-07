@@ -5,12 +5,15 @@ namespace App\Filament\Resources\ProduksiRotaries;
 use App\Filament\Resources\ProduksiRotaries\Pages\CreateProduksiRotary;
 use App\Filament\Resources\ProduksiRotaries\Pages\EditProduksiRotary;
 use App\Filament\Resources\ProduksiRotaries\Pages\ListProduksiRotaries;
+use App\Filament\Resources\ProduksiRotaries\Pages\MonitoringProduksiRotary;
+
 use App\Filament\Resources\ProduksiRotaries\Pages\ViewProduksiRotary;
 use App\Filament\Resources\ProduksiRotaries\Schemas\ProduksiRotaryForm;
 use App\Filament\Resources\ProduksiRotaries\Schemas\ProduksiRotaryInfolist;
 use App\Filament\Resources\ProduksiRotaries\Tables\ProduksiRotariesTable;
 use App\Models\ProduksiRotary;
 use BackedEnum;
+use Filament\Navigation\NavigationItem;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -18,6 +21,18 @@ use Filament\Tables\Table;
 
 class ProduksiRotaryResource extends Resource
 {
+    public static function getNavigationItems(): array
+    {
+        return [
+            NavigationItem::make('Data Produksi Rotary')
+                ->url(static::getUrl()) // ke halaman utama resource
+                ->icon('heroicon-o-clipboard-document'),
+
+            NavigationItem::make('Monitoring Produksi Rotary')
+                ->url(static::getUrl('monitoring'))
+                ->icon('heroicon-o-chart-bar')
+        ];
+    }
     protected static ?string $model = ProduksiRotary::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
@@ -59,6 +74,7 @@ class ProduksiRotaryResource extends Resource
             'create' => CreateProduksiRotary::route('/create'),
             'view' => ViewProduksiRotary::route('/{record}'),
             'edit' => EditProduksiRotary::route('/{record}/edit'),
+            'monitoring' => Pages\MonitoringProduksiRotary::route('/monitoring'),
         ];
     }
 }
