@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\ProduksiRotaries\Pages;
+namespace App\Filament\Resources\Lahans\Pages;
 
-use App\Filament\Resources\ProduksiRotaries\ProduksiRotaryResource;
+use App\Filament\Resources\Lahans\LahanResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditProduksiRotary extends EditRecord
+class EditLahan extends EditRecord
 {
-    protected static string $resource = ProduksiRotaryResource::class;
+    protected static string $resource = LahanResource::class;
 
     protected function getHeaderActions(): array
     {

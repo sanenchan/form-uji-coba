@@ -9,35 +9,30 @@ class ProduksiRotary extends Model
 {
     use HasFactory;
 
-    protected $table = 'produksi_rotaries';
-    protected $primaryKey = 'id_produksi_rotary';
-
+    protected $table = 'produksi_rotary';
     protected $fillable = [
-        'tanggal_produksi',
-        'jam_mulai_mesin',
-        'jam_selesai_mesin',
+        'id_mesin',
+        'tgl_produksi',
         'kendala',
-        'status_data',
     ];
 
-    // Relasi ke detail lahan
-    public function lahans()
+    public function mesin()
     {
-        return $this->hasMany(ProduksiRotaryLahan::class, 'id_produksi_rotary', 'id_produksi_rotary');
+        return $this->belongsTo(Mesin::class, 'id_mesin', 'id_mesin');
     }
 
-    // Relasi ke detail pegawai
-    public function pegawais()
+    public function detailLahans()
     {
-        return $this->hasMany(ProduksiRotaryPegawai::class, 'id_produksi_rotary', 'id_produksi_rotary');
-    }
-    public function produksiRotaryLahans()
-    {
-        return $this->hasMany(ProduksiRotaryLahan::class, 'id_produksi_rotary');
+        return $this->hasMany(DetailLahanRotary::class, 'id_produksi', 'id');
     }
 
-    public function produksiRotaryPegawais()
+    public function detailPegawais()
     {
-        return $this->hasMany(ProduksiRotaryPegawai::class, 'id_produksi_rotary');
+        return $this->hasMany(DetailPegawaiRotary::class, 'id_produksi', 'id');
+    }
+
+    public function detailHasilPalets()
+    {
+        return $this->hasMany(DetailHasilPaletRotary::class, 'id_produksi', 'id');
     }
 }

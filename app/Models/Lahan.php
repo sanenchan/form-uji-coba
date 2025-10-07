@@ -26,13 +26,17 @@ class Lahan extends Model
     {
         return $this->hasMany(ProduksiRotary::class, 'id_lahan', 'id_lahan');
     }
- // ✅ ini tempatnya
+    // ✅ ini tempatnya
     protected $appends = ['kode_nama'];
 
     // Accessor
     public function getKodeNamaAttribute()
     {
         return "{$this->kode_lahan} - {$this->nama_lahan}";
+    }
+    public function detailLahans()
+    {
+        return $this->hasMany(DetailLahanRotary::class, 'id_lahan', 'id_lahan');
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\ProduksiRotaries\Tables;
+namespace App\Filament\Resources\Lahans\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,29 +9,24 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ProduksiRotariesTable
+class LahansTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('tgl_produksi')
-                    ->label('Tanggal Produksi')
-                    ->date('d M Y')
-                    ->sortable()
+                TextColumn::make('kode_lahan')
                     ->searchable(),
-
-                TextColumn::make('mesin.nama_mesin')
-                    ->label('Mesin')
-                    ->sortable()
+                TextColumn::make('nama_lahan')
                     ->searchable(),
-                TextColumn::make('detail_pegawais_count')
-                    ->label('Jumlah Pekerja')
-                    ->sortable(),
-                TextColumn::make('detail_hasil_palets_sum_total')
-                    ->label('Total Produksi')
-                    ->numeric(0)
-                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

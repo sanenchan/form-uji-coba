@@ -33,5 +33,9 @@ class Ukuran extends Model
             * ($this->lebar ?? 0)
             * ($this->tebal ?? 0);
     }
+    public function detailHasilPalets()
+    {
+        return $this->hasMany(DetailHasilPaletRotary::class, 'id_ukuran', 'id_ukuran');
+    }
 
 }

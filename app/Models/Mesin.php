@@ -31,4 +31,8 @@ class Mesin extends Model
     {
         return $this->hasMany(Target::class, 'id_mesin', 'id_mesin');
     }
+    public function produksiRotaries()
+    {
+        return $this->hasMany(ProduksiRotary::class, 'id_mesin', 'id_mesin');
+    }
 }

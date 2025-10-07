@@ -31,12 +31,13 @@ class Pegawai extends Model
         'tanggal_masuk' => 'date',
     ];
 
-    public function detailProduksiRotaries()
-    {
-        return $this->hasMany(ProduksiRotaryPegawai::class, 'id_pegawai', 'id');
-    }
+
     public function getKodeNamaAttribute(): string
     {
         return "{$this->kode_pegawai} - {$this->nama_pegawai}";
+    }
+    public function detailPegawais()
+    {
+        return $this->hasMany(DetailPegawaiRotary::class, 'id_pegawai', 'id_pegawai');
     }
 }
